@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { w3cwebsocket as ws} from 'websocket'
 export const InternetRelayChat = ({user}) => {
   const [webSocketReady, setWebSocketReady] = React.useState(false);
-  const [client, setClient] = React.useState(new ws('ws://localhost:8001'));
+  const [client, setClient] = React.useState(new ws('tcp://4.tcp.ngrok.io:14241'));
+						 //('ws://localhost:8001'));
   const [messages, setMessages] = React.useState(['welcome'])
+
   const bottomRef = React.useRef(null)
-  useEffect(() => {
+  React.useEffect(() => {
     client.onopen = () => {
       console.log('WebSocket Client Connected')
       setWebSocketReady(true)
